@@ -3,4 +3,4 @@ compiler:
   - gcc
    -g++
 script: g++ -o test algorithm_for_creating_new_account.cpp
-./test
+./test.out
