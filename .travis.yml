@@ -3,6 +3,5 @@ compiler:
   - clang
   - gcc
    -g++
-script: gcc algorithm_for_creating_new_account.cpp
 script: g++ algorithm_for_creating_new_account.cpp
 
