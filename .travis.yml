@@ -2,5 +2,5 @@ language: cpp
 compiler:
   - gcc
    -g++
+script: ./test   
 script: g++ -o test algorithm_for_creating_new_account.cpp
-./test.out
