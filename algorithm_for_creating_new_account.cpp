@@ -162,6 +162,6 @@ goto label1;
 
 cout<<"Count : "<<count;
 
-return;  
+return 0;  
 }
 
