@@ -1,6 +1,5 @@
 language: cpp
 compiler:
-  - clang
   - gcc
    -g++
 script: g++ algorithm_for_creating_new_account.cpp
