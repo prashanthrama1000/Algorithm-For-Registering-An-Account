@@ -95,7 +95,7 @@ ran[hid]=rand()%100;cout<<"Your Encryption Key is "<<ran[hid];cout<<endl;
 };
 
 
-main()
+int main()
 {
 int choice;
 login l1;registe r1[10];int r2=0;int roption[15];int r2option[15];int r4=0;
@@ -161,5 +161,7 @@ goto label1;
 }
 
 cout<<"Count : "<<count;
+
+return;  
 }
 
