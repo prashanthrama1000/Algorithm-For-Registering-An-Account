@@ -1,3 +1,5 @@
-language: c
-compiler: gcc
-script: gcc algorithm_for_creating_new_account.c
+language: cpp
+compiler:
+  - clang
+  - gcc
+script: clang algorithm_for_creating_new_account.cpp
