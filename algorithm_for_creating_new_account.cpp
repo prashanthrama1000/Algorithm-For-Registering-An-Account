@@ -1,4 +1,4 @@
-#include<iostream>
+#include<iostream.h>
 #include<stdio.h>
 #include<string.h>
 #include<time.h>
