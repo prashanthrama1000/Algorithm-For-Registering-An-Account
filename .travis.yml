@@ -1,2 +1,3 @@
 language: c
 compiler: gcc
+script: gcc algorithm_for_creating_new_account.c
