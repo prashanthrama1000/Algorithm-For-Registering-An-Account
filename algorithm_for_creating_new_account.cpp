@@ -14,6 +14,19 @@ static int count=0, up=0;
 char ucopy[50][50], pcopy[50][50];
 int upcount, hid;
 
+class HelperMethods {
+
+public:
+  bool hasLettersOnly(char *name) {
+    for(int i=0;i<strlen(name);i++) {
+      if(!((int(name[i])>=65 && int(name[i])<=90) || (int(name[i])>=97 && int(name[i])<=132))) {
+        return false;
+      }
+    }
+    return true;
+  }
+};
+
 class login {
 
 protected:
@@ -67,12 +80,20 @@ public:
 class registe:public login {
 
 protected:
-  char name[50], address[100];
+  char name[50], address[100]; HelperMethods helperObject;
 
 public:
   void rget() {
     cout<<"Registration : ";cout<<endl;
-    cout<<"Please enter your name : ";cin>>name;cout<<endl;
+    while(true) {
+      cout<<"Please enter your name : ";
+      cin>>name;
+      cout<<endl;
+      if(helperObject.hasLettersOnly(name)){
+        break;
+      }
+      cout<<"Only letters are allowed. Please enter again"<<endl;
+    }
     cout<<"Please enter your House Address : ";cin>>address;cout<<endl;
     cout<<"Please enter your Username : ";cin>>username1;cout<<endl;strcpy(ucopy[up],username1);
     cout<<"Please enter your Password (Conditions Apply) : ";cin>>pass1;cout<<endl;strcpy(pcopy[up],pass1);++up;upcount=up;
