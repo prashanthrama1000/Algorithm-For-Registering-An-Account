@@ -180,6 +180,13 @@ int main()
       break;
     }
 
+    case 3:
+    {
+      cout<<"Introducing the feature 'Developer Mode'."<<endl;
+      cout<<"The aim is to use the encryption key created at the time of user registration in case the account gets locked.";
+      cout<<endl;
+    }
+
     case 5:
     {
       cout<<" . . . . "<<endl<<endl;
