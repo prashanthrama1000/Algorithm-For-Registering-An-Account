@@ -184,13 +184,35 @@ int main()
     {
       cout<<"Introducing the feature 'Developer Mode'."<<endl;
       cout<<"The aim is to use the encryption key created at the time of user registration in case the account gets locked.";
+      cout<<endl<<endl;
+      goto label1;
+    }
+
+    case 4:
+    {
+      cout<<"About the application.";
       cout<<endl;
+      cout<<"A basic template for registering an account with common fields and to log in with the same.";
+      cout<<endl<<endl;
+      goto label1;
     }
 
     case 5:
     {
-      cout<<" . . . . "<<endl<<endl;
-      exit(0);
+      int wantToExit = 0;
+      cout<<endl;
+      cout<<"Do you want to exit the application? 1/0 : ";
+      cin>>wantToExit;
+      cout<<endl;
+      if(wantToExit == 1)
+      {
+        cout<<"Exiting the application"<<endl<<endl;
+        exit(0);
+      }
+      else
+      {
+        goto label1;
+      }
     }
 
     default:
