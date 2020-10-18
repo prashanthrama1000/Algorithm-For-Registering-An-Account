@@ -27,7 +27,7 @@ public:
   }
 };
 
-class Login {
+class LoginAccount {
 
 protected:
   char username[50];
@@ -54,19 +54,12 @@ public:
       }
       else {
         if(i==(upcount-1)) {
-          cout<<"Username and Password does not match :|";
+          cout<<"Username and Password does not match";
           cout<<endl;
           goto doesnot;
         }
       }
     }
-  }
-
-  void devdis() {
-    cout<<" -----------------------"<<endl;
-    cout<<"Username : "<<username<<endl;
-    cout<<"Password : "<<pass<<endl;
-    cout<<" -----------------------"<<endl;
   }
 
   void counter() {
@@ -82,7 +75,7 @@ public:
   }
 };
 
-class Registe:public Login {
+class RegisterAccount:public LoginAccount {
 
 protected:
   char name[50], address[100]; HelperMethods helperObject;
@@ -128,13 +121,12 @@ public:
 int main()
 {
   int choice;
-  Login l1;Registe r1[10];int r2=0, roption[15], r2option[15], r4=0;
+  LoginAccount l1;RegisterAccount r1[10];int r2=0, roption[15], r2option[15], r4=0;
   label1:
   cout<<"1.Login"<<endl;
   cout<<"2.Register"<<endl;
-  cout<<"3.Developer Mode"<<endl;
-  cout<<"4.About"<<endl;
-  cout<<"5.Quit"<<endl;
+  cout<<"3.About"<<endl;
+  cout<<"4.Quit"<<endl;
   cout<<"Enter your selection : ";
   cin>>choice;
   switch(choice)
@@ -182,14 +174,6 @@ int main()
 
     case 3:
     {
-      cout<<"Introducing the feature 'Developer Mode'."<<endl;
-      cout<<"The aim is to use the encryption key created at the time of user registration in case the account gets locked.";
-      cout<<endl<<endl;
-      goto label1;
-    }
-
-    case 4:
-    {
       cout<<"About the application.";
       cout<<endl;
       cout<<"A basic template for registering an account with common fields and to log in with the same.";
@@ -197,7 +181,7 @@ int main()
       goto label1;
     }
 
-    case 5:
+    case 4:
     {
       int wantToExit = 0;
       cout<<endl;
