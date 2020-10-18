@@ -11,8 +11,8 @@
 using namespace std;
 
 static int count=0, up=0;
-char ucopy[50][50], pcopy[50][50];
-int upcount, hid;
+char storedUsernameList[50][50], storedPassList[50][50];
+int upcount, houseId;
 
 class HelperMethods {
 
@@ -30,9 +30,8 @@ public:
 class LoginAccount {
 
 protected:
-  char username[50];
+  char username[50], pass[50];
   int i, ran[100];
-  char pass[50], username1[50], pass1[50];
 
 public:
 
@@ -46,13 +45,12 @@ public:
     cin>>pass;cout<<endl;
 
     for(i=0;i<upcount;i++) {
-      if((strcmp(username,ucopy[i])==0)&&(strcmp(pass,pcopy[i])==0)) {
+      if((strcmp(username,storedUsernameList[i])==0)&&(strcmp(pass,storedPassList[i])==0)) {
         cout<<"Loading . . . .";cout<<endl;
-        cout<<"Username and Password Matches :) ";
+        cout<<"Username and Password Matches";
         cout<<endl;
         break;
-      }
-      else {
+      } else {
         if(i==(upcount-1)) {
           cout<<"Username and Password does not match";
           cout<<endl;
@@ -66,11 +64,11 @@ public:
     ++count;
   }
 
-  void checkhid() {
+  void checkHouseId() {
     if(count==0)
-    hid=0;
+    houseId=0;
     else {
-      hid=count;
+      houseId=count;
     }
   }
 };
@@ -81,7 +79,7 @@ protected:
   char name[50], address[100]; HelperMethods helperObject;
 
 public:
-  void rget() {
+  void invokeRegistration() {
     cout<<"Registration : "<<endl;
     while(true) {
       cout<<"Please enter your name : ";
@@ -96,23 +94,23 @@ public:
     cin>>address;
     cout<<endl;
     cout<<"Please enter your Username : ";
-    cin>>username1;
+    cin>>username;
     cout<<endl;
-    strcpy(ucopy[up],username1);
+    strcpy(storedUsernameList[up],username);
     cout<<"Please enter your Password (Conditions Apply) : ";
-    cin>>pass1;
+    cin>>pass;
     cout<<endl;
-    strcpy(pcopy[up],pass1);
+    strcpy(storedPassList[up],pass);
     ++up;upcount=up;
-    cout<<"Your House ID is "<<hid;
+    cout<<"Your House ID is "<<houseId;
     cout<<endl;
-    if(hid==0) {
+    if(houseId==0) {
       ran[0]=rand()%100;
       cout<<"Your Encryption Key is "<<ran[0]<<endl;
     }
-    if(hid>0) {
-      ran[hid]=rand()%100;
-      cout<<"Your Encryption Key is "<<ran[hid]<<endl;
+    if(houseId>0) {
+      ran[houseId]=rand()%100;
+      cout<<"Your Encryption Key is "<<ran[houseId]<<endl;
     }
   }
 
@@ -149,8 +147,8 @@ int main()
         cout<<"Count : "<<count<<endl;
         infile.close();
       }
-      r1[r2].checkhid();
-      r1[r2].rget();
+      r1[r2].checkHouseId();
+      r1[r2].invokeRegistration();
       ++r2;++count;
       {
         ofstream outfile;
