@@ -11,8 +11,8 @@
 using namespace std;
 
 static int count=0, up=0;
-char ucopy[50][50], pcopy[50][50];
-int upcount, hid;
+char storedUsernameList[50][50], storedPassList[50][50];
+int upcount, houseId;
 
 class HelperMethods {
 
@@ -27,12 +27,10 @@ public:
   }
 };
 
-class Login {
+class LoginAccount {
 
 protected:
-  char username[50];
-  int i, ran[100];
-  char pass[50], username1[50], pass1[50];
+  char username[50], pass[50];
 
 public:
 
@@ -45,16 +43,15 @@ public:
     cout<<"Enter the Password : ";
     cin>>pass;cout<<endl;
 
-    for(i=0;i<upcount;i++) {
-      if((strcmp(username,ucopy[i])==0)&&(strcmp(pass,pcopy[i])==0)) {
-        cout<<"Loading . . . .";cout<<endl;
-        cout<<"Username and Password Matches :) ";
+    for(int i=0;i<upcount;i++) {
+      if((strcmp(username,storedUsernameList[i])==0)&&(strcmp(pass,storedPassList[i])==0)) {
+        cout<<endl;
+        cout<<"Username and Password Matches";
         cout<<endl;
         break;
-      }
-      else {
+      } else {
         if(i==(upcount-1)) {
-          cout<<"Username and Password does not match :|";
+          cout<<"Username and Password does not match";
           cout<<endl;
           goto doesnot;
         }
@@ -62,33 +59,26 @@ public:
     }
   }
 
-  void devdis() {
-    cout<<" -----------------------"<<endl;
-    cout<<"Username : "<<username<<endl;
-    cout<<"Password : "<<pass<<endl;
-    cout<<" -----------------------"<<endl;
-  }
-
   void counter() {
     ++count;
   }
 
-  void checkhid() {
+  void checkHouseId() {
     if(count==0)
-    hid=0;
+    houseId=0;
     else {
-      hid=count;
+      houseId=count;
     }
   }
 };
 
-class Registe:public Login {
+class RegisterAccount:public LoginAccount {
 
 protected:
   char name[50], address[100]; HelperMethods helperObject;
 
 public:
-  void rget() {
+  void invokeRegistration() {
     cout<<"Registration : "<<endl;
     while(true) {
       cout<<"Please enter your name : ";
@@ -103,41 +93,34 @@ public:
     cin>>address;
     cout<<endl;
     cout<<"Please enter your Username : ";
-    cin>>username1;
+    cin>>username;
     cout<<endl;
-    strcpy(ucopy[up],username1);
+    strcpy(storedUsernameList[up],username);
     cout<<"Please enter your Password (Conditions Apply) : ";
-    cin>>pass1;
+    cin>>pass;
     cout<<endl;
-    strcpy(pcopy[up],pass1);
+    strcpy(storedPassList[up],pass);
     ++up;upcount=up;
-    cout<<"Your House ID is "<<hid;
+    cout<<"Your House ID is "<<houseId;
     cout<<endl;
-    if(hid==0) {
-      ran[0]=rand()%100;
-      cout<<"Your Encryption Key is "<<ran[0]<<endl;
-    }
-    if(hid>0) {
-      ran[hid]=rand()%100;
-      cout<<"Your Encryption Key is "<<ran[hid]<<endl;
-    }
   }
 
 };
 
 int main()
 {
-  int choice;
-  Login l1;Registe r1[10];int r2=0, roption[15], r2option[15], r4=0;
+  int userChoice;
+  LoginAccount l1;
+  RegisterAccount registerAccount;
+  int toRegister, toLogin;
   label1:
   cout<<"1.Login"<<endl;
   cout<<"2.Register"<<endl;
-  cout<<"3.Developer Mode"<<endl;
-  cout<<"4.About"<<endl;
-  cout<<"5.Quit"<<endl;
+  cout<<"3.About"<<endl;
+  cout<<"4.Quit"<<endl;
   cout<<"Enter your selection : ";
-  cin>>choice;
-  switch(choice)
+  cin>>userChoice;
+  switch(userChoice)
   {
     case 1:
     {
@@ -157,38 +140,29 @@ int main()
         cout<<"Count : "<<count<<endl;
         infile.close();
       }
-      r1[r2].checkhid();
-      r1[r2].rget();
-      ++r2;++count;
+      registerAccount.checkHouseId();
+      registerAccount.invokeRegistration();
+      ++count;
       {
         ofstream outfile;
         outfile.open("counterfile.txt");
         outfile<<count<<endl;
         outfile.close();
-        ++r4;
       }
       cout<<"Do you wish to register an another account? 1/0 : ";
-      cin>>roption[r2];
+      cin>>toRegister;
       cout<<endl;
-      if(roption[r2]==1)
+      if(toRegister==1)
         goto again;
       cout<<"Do you wish to log in? 1/0 : ";
-      cin>>r2option[r2];
+      cin>>toLogin;
       cout<<endl;
-      if(r2option[r2]==1)
+      if(toLogin==1)
         goto logpath;
       break;
     }
 
     case 3:
-    {
-      cout<<"Introducing the feature 'Developer Mode'."<<endl;
-      cout<<"The aim is to use the encryption key created at the time of user registration in case the account gets locked.";
-      cout<<endl<<endl;
-      goto label1;
-    }
-
-    case 4:
     {
       cout<<"About the application.";
       cout<<endl;
@@ -197,7 +171,7 @@ int main()
       goto label1;
     }
 
-    case 5:
+    case 4:
     {
       int wantToExit = 0;
       cout<<endl;
@@ -221,6 +195,5 @@ int main()
       goto label1;
     }
   }
-  cout<<"Count : "<<count;
   return 0;
 }
