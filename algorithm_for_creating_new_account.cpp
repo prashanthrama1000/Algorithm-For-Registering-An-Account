@@ -31,7 +31,6 @@ class LoginAccount {
 
 protected:
   char username[50], pass[50];
-  int i, ran[100];
 
 public:
 
@@ -44,9 +43,9 @@ public:
     cout<<"Enter the Password : ";
     cin>>pass;cout<<endl;
 
-    for(i=0;i<upcount;i++) {
+    for(int i=0;i<upcount;i++) {
       if((strcmp(username,storedUsernameList[i])==0)&&(strcmp(pass,storedPassList[i])==0)) {
-        cout<<"Loading . . . .";cout<<endl;
+        cout<<endl;
         cout<<"Username and Password Matches";
         cout<<endl;
         break;
@@ -104,30 +103,24 @@ public:
     ++up;upcount=up;
     cout<<"Your House ID is "<<houseId;
     cout<<endl;
-    if(houseId==0) {
-      ran[0]=rand()%100;
-      cout<<"Your Encryption Key is "<<ran[0]<<endl;
-    }
-    if(houseId>0) {
-      ran[houseId]=rand()%100;
-      cout<<"Your Encryption Key is "<<ran[houseId]<<endl;
-    }
   }
 
 };
 
 int main()
 {
-  int choice;
-  LoginAccount l1;RegisterAccount r1[10];int r2=0, roption[15], r2option[15], r4=0;
+  int userChoice;
+  LoginAccount l1;
+  RegisterAccount registerAccount;
+  int toRegister, toLogin;
   label1:
   cout<<"1.Login"<<endl;
   cout<<"2.Register"<<endl;
   cout<<"3.About"<<endl;
   cout<<"4.Quit"<<endl;
   cout<<"Enter your selection : ";
-  cin>>choice;
-  switch(choice)
+  cin>>userChoice;
+  switch(userChoice)
   {
     case 1:
     {
@@ -147,25 +140,24 @@ int main()
         cout<<"Count : "<<count<<endl;
         infile.close();
       }
-      r1[r2].checkHouseId();
-      r1[r2].invokeRegistration();
-      ++r2;++count;
+      registerAccount.checkHouseId();
+      registerAccount.invokeRegistration();
+      ++count;
       {
         ofstream outfile;
         outfile.open("counterfile.txt");
         outfile<<count<<endl;
         outfile.close();
-        ++r4;
       }
       cout<<"Do you wish to register an another account? 1/0 : ";
-      cin>>roption[r2];
+      cin>>toRegister;
       cout<<endl;
-      if(roption[r2]==1)
+      if(toRegister==1)
         goto again;
       cout<<"Do you wish to log in? 1/0 : ";
-      cin>>r2option[r2];
+      cin>>toLogin;
       cout<<endl;
-      if(r2option[r2]==1)
+      if(toLogin==1)
         goto logpath;
       break;
     }
@@ -203,6 +195,5 @@ int main()
       goto label1;
     }
   }
-  cout<<"Count : "<<count;
   return 0;
 }
